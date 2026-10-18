@@ -10,7 +10,7 @@ document.querySelectorAll('.year').forEach((el) => { el.textContent = new Date()
   host.appendChild(c);
   const ctx = c.getContext('2d');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w = 0, h = 0, cx = 0, cy = 0, R = 90, color = '', parts = [], frame = 0, visible = true;
+  let w = 0, h = 0, cx = 0, cy = 0, R = 90, color = '', alpha = 0.28, width = 1, parts = [], frame = 0, visible = true;
   const spawn = () => ({ x: Math.random() * w, y: Math.random() * h, life: 60 + Math.random() * 160 });
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -29,13 +29,19 @@ document.querySelectorAll('.year').forEach((el) => { el.textContent = new Date()
     return [(dy / r) * v - (dx / r) * v * 0.25 - 0.15, (-dx / r) * v - (dy / r) * v * 0.25];
   };
   const step = () => {
-    // re-read the color now and then so it follows the light/dark toggle
-    if (frame++ % 60 === 0) color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    // re-read the color now and then so it follows the light/dark toggle;
+    // light mode gets stronger, slightly thicker lines so they stand out on the pale background
+    if (frame++ % 60 === 0) {
+      color = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+      const dark = document.documentElement.dataset.theme === 'dark';
+      alpha = dark ? 0.28 : 0.55;
+      width = dark ? 1 : 1.3;
+    }
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillStyle = 'rgba(0,0,0,0.045)';
     ctx.fillRect(0, 0, w, h);
     ctx.globalCompositeOperation = 'source-over';
-    ctx.strokeStyle = color; ctx.globalAlpha = 0.28; ctx.lineWidth = 1;
+    ctx.strokeStyle = color; ctx.globalAlpha = alpha; ctx.lineWidth = width;
     ctx.beginPath();
     for (const p of parts) {
       const [vx, vy] = field(p.x, p.y);
