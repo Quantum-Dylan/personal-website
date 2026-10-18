@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dylan Conard</title>
+  <meta name="description" content="Dylan Conard: Princeton computer science student applying machine learning and data analysis to tropical cyclone development and genesis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Apply saved theme before paint to avoid a flash
+    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a href="#top" class="brand">Dylan Conard</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><button class="theme-toggle" aria-label="Toggle dark mode">◐</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero band band-sea">
+      <!-- Background: wind streamlines circling a storm, drawn by script.js -->
+      <div class="hero-art" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="label">Computer Science · Princeton University · Class of 2027</p>
+          <h1>Dylan Conard</h1>
+          <p class="lede">
+            I'm a Computer Science student with a minor in Environmental Studies, using
+            <strong>machine learning</strong> and <strong>large-scale data analysis</strong> to understand
+            <strong>tropical cyclone</strong> development and genesis.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+            <a class="btn ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="band band-sand section">
+      <div class="container about-grid">
+        <figure class="portrait">
+          <img src="images/dylan-conard.jpg" alt="Dylan Conard smiling outdoors on Princeton's campus, wearing a black Class of 2027 sweater" width="1333" height="1815" loading="lazy">
+        </figure>
+        <div>
+        <header class="sec-head">
+          <h2>Hi, I'm Dylan!</h2>
+        </header>
+        <div class="prose">
+          <p>
+            I'm an undergraduate at Princeton University studying Computer Science (A.B.) with a minor in
+            Environmental Studies, graduating in May 2027.
+          </p>
+          <p>
+            In 2026 I worked with the University of Reading's Department of Meteorology on machine learning
+            approaches to predicting tropical cyclone genesis. Before that, I spent a year and a half in Princeton's
+            Department of Civil and Environmental Engineering studying human vulnerability to extreme weather.
+          </p>
+          <p>
+            On campus I'm a Head Fellow with the Emma Bloomberg Center's SIFP program, an ACT tutor, co-captain of
+            the TiGHAs intramural soccer team, and a member of the American Whig–Cliosophic Society.
+          </p>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH INTERESTS ============ -->
+    <section id="research" class="band band-sea section">
+      <div class="container">
+        <header class="sec-head">
+          <h2>Research Interests</h2>
+        </header>
+        <ul class="tags">
+          <li>Tropical Cyclones</li>
+          <li>Extreme Weather &amp; Compound Hazards</li>
+          <li>Machine Learning for Climate</li>
+          <li>Climate Risk &amp; Human Vulnerability</li>
+          <li>Data Analysis &amp; Visualization</li>
+        </ul>
+        <div class="cards two">
+          <article class="card feature">
+            <p class="meta">Meteorology · University of Reading</p>
+            <h3>Predicting Tropical Cyclone Genesis</h3>
+            <p>Evaluating a novel machine learning feature selection technique for predicting annual tropical cyclone genesis, both globally and basin by basin, and exploring more physically informed, dynamical approaches.</p>
+          </article>
+          <article class="card feature">
+            <p class="meta">Civil and Environmental Engineering · Princeton University</p>
+            <h3>Human Vulnerability to Extreme Weather</h3>
+            <p>Assessing new vulnerability metrics for weather hazards using 20 years of daily, county-level NOAA data, with a focus on compound weather events in major coastal cities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="band band-deep section">
+      <div class="container">
+        <header class="sec-head">
+          <h2>Experience</h2>
+        </header>
+        <ol class="timeline">
+          <li>
+            <div class="when">Apr. 2026 – Aug. 2026</div>
+            <div>
+              <h3>Meteorology Undergraduate Researcher</h3>
+              <p class="where">University of Reading, Department of Meteorology · Reading, UK</p>
+              <ul>
+                <li>Assessed the performance of a novel machine learning feature selection technique for predicting annual tropical cyclone genesis on a global and basin-wide scale.</li>
+                <li>Extended the code to support more diverse training datasets by modularizing the temporal and spatial input features.</li>
+                <li>Investigated the feasibility of a more physically informed algorithm to enable a more dynamical model.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="when">Jan. 2026 – Present</div>
+            <div>
+              <h3>SIFP Head Fellow</h3>
+              <p class="where">Princeton Emma Bloomberg Center for Access and Opportunity · Princeton, NJ</p>
+              <ul>
+                <li>Provide personal, professional, and academic support to mentees through inclusive leadership and weekly group meetings.</li>
+                <li>Receive intensive leadership training in facilitation, communication, and debriefing to better support mentees.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="when">Feb. 2024 – Aug. 2025</div>
+            <div>
+              <h3>Civil and Environmental Engineering Undergraduate Researcher</h3>
+              <p class="where">Princeton University, Department of Civil and Environmental Engineering · Princeton, NJ</p>
+              <ul>
+                <li>Assessed new human vulnerability metrics for extreme weather hazards using large-scale data analysis and visualization.</li>
+                <li>Cleaned and validated a 20-year, daily, county-level dataset from NOAA weather archives and ran preliminary analyses of compound weather events in major coastal cities.</li>
+                <li>Scaled the analysis from county to regional patterns, enabling more robust geographic comparisons.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="when">July 2024 – Present</div>
+            <div>
+              <h3>ACT Tutor</h3>
+              <p class="where">Princeton Tutoring LLC · Princeton, NJ</p>
+              <ul>
+                <li>Identify each student's opportunities for growth and build personalized short- and long-term plans to reach their ACT goals.</li>
+                <li>Teach evidence-based strategies for problem-solving and critical reasoning, along with organization and time management habits.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section id="education" class="band band-sand section">
+      <div class="container">
+        <header class="sec-head">
+          <h2>Education</h2>
+        </header>
+        <div class="degree">
+          <div>
+            <h3>Princeton University</h3>
+            <p>A.B., Computer Science · Minor in Environmental Studies</p>
+          </div>
+          <dl>
+            <div><dt>GPA</dt><dd>3.72</dd></div>
+            <div><dt>Graduation</dt><dd>May 2027</dd></div>
+          </dl>
+        </div>
+
+        <h3 class="subhead">Relevant Coursework</h3>
+        <div class="cards three">
+          <article class="card">
+            <p class="meta">Spring 2026</p>
+            <h3>Tropical Cyclones and Associated Impacts</h3>
+            <p>Storm surge, inland flooding, heavy rainfall, damaging winds, and compound hazards, along with their societal impacts on energy and public health.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Fall 2025</p>
+            <h3>Climate and Weather: Order in the Chaos</h3>
+            <p>Energy and water cycling, ocean and atmospheric circulation, El Niño, and the statistics of heat waves, tropical cyclones, and floods.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Fall 2025</p>
+            <h3>Intro to Machine Learning (Python)</h3>
+            <p>Linear models, SVMs, clustering, dimensionality reduction, deep neural networks, Markov decision processes, planning, and reinforcement learning.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Spring 2025</p>
+            <h3>Intro to Programming Systems (C and Assembly)</h3>
+            <p>Composing large programs with modularity and abstraction; testing, debugging, and performance tuning; computer architecture through C, assembly, and machine language.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Fall 2024</p>
+            <h3>Algorithms and Data Structures (Java)</h3>
+            <p>Sorting, searching, and graph algorithms, plus advanced topics in randomization, intractability, and multiplicative weights.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Spring 2024</p>
+            <h3>Intro to Computer Science (Java)</h3>
+            <p>Hardware and software systems, programming in Java, algorithms and data structures, theory of computation, and scientific computing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACTIVITIES ============ -->
+    <section id="activities" class="band band-sea section">
+      <div class="container">
+        <header class="sec-head">
+          <h2>Activities &amp; Leadership</h2>
+        </header>
+        <div class="cards two">
+          <article class="card">
+            <p class="meta">Member · Aug. 2024 – Present</p>
+            <h3>Club Rock-Climbing</h3>
+            <p>A dedicated climbing team focused on technique development, route planning, and coordinating climbing trips.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Member &amp; Head Fellow · Jan. 2024 – Present</p>
+            <h3>Scholars Institute Fellows Program</h3>
+            <p>Providing mentorship and academic enrichment opportunities for Princeton students.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Co-Captain · Jan. 2024 – Present</p>
+            <h3>TiGHAs Intramural Soccer</h3>
+            <p>Co-captain of the TiGHAs, founded in 2017 and winners of the Princeton International Center's World Cup Tournament.</p>
+          </article>
+          <article class="card">
+            <p class="meta">Member · Aug. 2023 – Present</p>
+            <h3>American Whig–Cliosophic Society</h3>
+            <p>Princeton's oldest political, literary, and debating society, hosting prominent speakers and social events.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="band band-deep section contact">
+      <div class="container">
+        <p class="label">Contact</p>
+        <h2>Let's talk storms, climate, or machine learning.</h2>
+        <p class="contact-note">Email is the best way to reach me.</p>
+        <a class="mail" href="mailto:dc4986@princeton.edu">dc4986@princeton.edu</a>
+        <ul class="contact-links">
+          <li><a href="https://www.linkedin.com/in/dylanconard" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></li>
+          <!-- EDIT: uncomment and fill in if you want these linked
+          <li><a href="https://github.com/your-username" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></li>
+          -->
+        </ul>
+      </div>
+      <footer class="container footer">
+        <p>© <span class="year"></span> Dylan Conard</p>
+        <p>Last updated October 2026</p>
+      </footer>
+    </section>
+  </main>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
