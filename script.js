@@ -95,3 +95,4 @@ if (navLinks.length) {
   }, { rootMargin: '-40% 0px -55% 0px' });
   document.querySelectorAll('main section[id]').forEach((s) => observer.observe(s));
 }
+
