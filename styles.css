@@ -1,7 +1,7 @@
 :root {
   --sea: #dff4f7;
   --paper: #ffffff;
-  --deep: #2a6b8c;
+  --deep: #226080;
   --ink: #0b2533;
   --muted: #4f6774;
   --accent: #0a5f8a;
@@ -133,6 +133,9 @@ h1, h2 { font-family: "Manrope", system-ui, sans-serif; }
 }
 .btn.primary { background: var(--ink); color: var(--paper); }
 .btn.primary:hover { background: var(--accent); color: #fff; }
+/* light mode: the main button uses the same ocean blue as the dark sections */
+:root[data-theme="light"] .btn.primary { background: var(--deep); color: #fff; }
+:root[data-theme="light"] .btn.primary:hover { background: color-mix(in srgb, var(--deep) 82%, #000); }
 .btn.ghost { border: 1px solid var(--line-strong); color: var(--ink); }
 .btn.ghost:hover { border-color: var(--ink); }
 
