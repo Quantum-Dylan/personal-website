@@ -77,11 +77,21 @@ if (toggle && links) {
   });
 }
 
-// Dark / light toggle (light by default; remembers your choice)
+// Dark / light: follows the computer's setting (and changes live with it) until the visitor
+// picks a mode with the ◐ button. Picking the mode that matches the computer goes back to following it.
+const systemDark = matchMedia('(prefers-color-scheme: dark)');
+const savedTheme = () => { try { return localStorage.getItem('theme'); } catch (e) { return null; } };
+systemDark.addEventListener('change', (e) => {
+  if (!savedTheme()) document.documentElement.dataset.theme = e.matches ? 'dark' : 'light';
+});
 document.querySelectorAll('.theme-toggle').forEach((btn) => btn.addEventListener('click', () => {
   const root = document.documentElement;
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+  const matchesSystem = (root.dataset.theme === 'dark') === systemDark.matches;
+  try {
+    if (matchesSystem) localStorage.removeItem('theme');
+    else localStorage.setItem('theme', root.dataset.theme);
+  } catch (e) {}
 }));
 
 // Highlight the nav link for the section on screen
@@ -96,3 +106,15 @@ if (navLinks.length) {
   document.querySelectorAll('main section[id]').forEach((s) => observer.observe(s));
 }
 
+// Flip cards: tap (or Enter/Space) flips a card on touch screens and keyboards; hover handles it on computers
+const canHover = matchMedia('(hover: hover)');
+function makeFlippable(card) {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
+    if (!canHover.matches) card.classList.toggle('is-flipped');
+  });
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.classList.toggle('is-flipped'); }
+  });
+}
+document.querySelectorAll('.card.flip').forEach(makeFlippable);

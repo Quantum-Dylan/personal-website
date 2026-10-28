@@ -4,14 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dylan Conard</title>
-  <meta name="description" content="Dylan Conard: Princeton computer science student applying machine learning and data analysis to tropical cyclone development and genesis.">
+  <meta name="description" content="Dylan Conard: Princeton computer science student applying machine learning and data analysis to tropical cyclone genesis, development, and impacts.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&family=DM+Sans:opsz,wght@9..40,400..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // Apply saved theme before paint to avoid a flash
-    try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    // Set the theme before paint to avoid a flash: the visitor's own choice if they made one
+    // with the ◐ button, otherwise their computer's light/dark setting
+    (function () {
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      const systemDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved || (systemDark ? 'dark' : 'light');
+    })();
   </script>
 </head>
 <body>
@@ -22,8 +28,8 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#research">Research</a></li>
-        <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="#activities">Activities</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><button class="theme-toggle" aria-label="Toggle dark mode">◐</button></li>
@@ -43,7 +49,7 @@
           <p class="lede">
             I'm a Computer Science student with a minor in Environmental Studies, using
             <strong>machine learning</strong> and <strong>large-scale data analysis</strong> to understand
-            <strong>tropical cyclone</strong> development and genesis.
+            <strong>tropical cyclone</strong> genesis, development, and impacts.
           </p>
           <div class="actions">
             <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
@@ -65,103 +71,152 @@
         </header>
         <div class="prose">
           <p>
-            I'm an undergraduate at Princeton University studying Computer Science (A.B.) with a minor in
-            Environmental Studies, graduating in May 2027.
+            I am a senior at Princeton University in the Computer Science department.
           </p>
           <p>
-            In 2026, I worked with the University of Reading's Department of Meteorology on machine learning
+            This past summer, I worked with the University of Reading's Department of Meteorology on machine learning
             approaches to predicting tropical cyclone genesis. Before that, I spent a year and a half in Princeton's
             Department of Civil and Environmental Engineering studying human vulnerability to extreme weather.
           </p>
           <p>
+            Currently, I am working on developing a statistical-dynamical model for annual tropical cyclone genesis
+            predictions as a part of my senior thesis under Professor Gabriel Vecchi.
+          </p>
+          <p>
             On campus I'm a Head Fellow with the Emma Bloomberg Center's SIFP program, an ACT tutor, co-captain of
-            the TiGHAs intramural soccer team, and a member of the American Whig–Cliosophic Society.
+            the TiGHAs intramural soccer team, a member of the American Whig–Cliosophic Society, and a member of the
+            Cap &amp; Gown Club.
           </p>
         </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ RESEARCH INTERESTS ============ -->
-    <section id="research" class="band band-sea section">
+    <!-- ============ RESEARCH EXPERIENCE ============ -->
+    <section id="research" class="band band-deep section">
       <div class="container">
         <header class="sec-head">
-          <h2>Research Interests</h2>
+          <h2>Research Experience</h2>
         </header>
-        <div class="cards two">
-          <article class="card feature">
-            <p class="meta">Meteorology · University of Reading</p>
-            <h3>Predicting Tropical Cyclone Genesis</h3>
-            <p>Evaluating a novel machine learning feature selection technique for predicting annual tropical cyclone genesis, both globally and basin by basin, and exploring more physically informed, dynamical approaches.</p>
+
+        <!-- Research internships, side by side (stacked on phones) -->
+        <div class="roles">
+          <article class="role">
+            <div class="role-head">
+              <p class="meta">Apr. 2026 – Aug. 2026</p>
+              <h3>Meteorology Undergraduate Researcher</h3>
+              <p class="where">University of Reading</p>
+              <p class="advisor">Advised by Professor Pier Luigi Vidale and Alex Baker</p>
+            </div>
+            <ul>
+              <li>Evaluated a novel ML feature selection technique (CRO-Spatio) for predicting annual tropical cyclone genesis on a global and basin-wide scale through regression metrics and feature attribution analysis.</li>
+              <li>Extended the code's functionality to allow for more diverse training datasets by modularizing the temporal and spatial input features.</li>
+              <li>Investigated the feasibility of including a more physically informed algorithm to allow for a more dynamical model.</li>
+            </ul>
           </article>
-          <article class="card feature">
-            <p class="meta">Civil and Environmental Engineering · Princeton University</p>
-            <h3>Human Vulnerability to Extreme Weather</h3>
-            <p>Assessing new vulnerability metrics for weather hazards using 20 years of daily, county-level NOAA data, with a focus on compound weather events in major coastal cities.</p>
+          <article class="role">
+            <div class="role-head">
+              <p class="meta">Feb. 2024 – Aug. 2025</p>
+              <h3>Civil and Environmental Engineering Undergraduate Researcher</h3>
+              <p class="where">Princeton University</p>
+              <p class="advisor">Advised by Professor Ning Lin and Christine Blackshaw</p>
+            </div>
+            <ul>
+              <li>Assessed the performance of new human vulnerability metrics for extreme weather hazards in different regional climates across the US, identifying discrepancies of over 7x more extreme heat events in the Northeast for Wet-Bulb Globe Temperature.</li>
+              <li>Cleaned and validated a 20-year, daily, county-level dataset using NOAA weather archives to ensure the conclusions were reliable.</li>
+              <li>Scaled the project's analysis from county to regional patterns, enabling more robust geographic comparisons.</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Research projects as flip cards: hover (or tap on phones) to see the details -->
+        <h3 class="subhead">Research Projects</h3>
+        <div class="cards two">
+          <article class="card feature flip" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <p class="meta">Aug. 2026 – Present</p>
+                <h3>Spatial XAI-GPI: A Spatially-Informed Explainable Genesis Potential Index</h3>
+                <p class="where">Senior Thesis Project · Princeton University</p>
+                <p class="advisor">Advised by Professor Gabriel Vecchi</p>
+                <span class="flip-hint" aria-hidden="true">Details ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-title" aria-hidden="true">Spatial XAI-GPI: A Spatially-Informed Explainable Genesis Potential Index</p>
+                <ul>
+                  <li>Integrates dimensionality reduction techniques and an evolutionary optimization method for feature selection into a deep neural network pipeline, built to be used with observed and GCM data to study tropical cyclone genesis and seed development.</li>
+                  <li>Tests perturbations of GCM simulations to analyze future conditions and understand the variables' relative feature importance.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="card feature flip" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <p class="meta">Jan. 2026 – May 2026</p>
+                <h3>WindVision: Using Augmented Reality to Visualize Air Flow</h3>
+                <p class="where">Junior Research Project · Princeton University</p>
+                <p class="advisor">Advised by Professor Parastoo Abtahi</p>
+                <span class="flip-hint" aria-hidden="true">Details ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-title" aria-hidden="true">WindVision: Using Augmented Reality to Visualize Air Flow</p>
+                <ul>
+                  <li>Utilized AI vision-powered room scans on an augmented reality headset to simulate and visualize airflow within a real-world room to help better understand and communicate the importance of window-based ventilation techniques for cooling.</li>
+                  <li>Integrated customizable, interactive objects to help plan out methods to increase air flow throughout the room within the app.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="subhead">Other Projects</h3>
+        <div class="cards three">
+          <article class="card flip" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <p class="meta">Aug. 2026 – Present</p>
+                <h3>Machine Learning Prediction Algorithm for Audio Features</h3>
+                <span class="flip-hint" aria-hidden="true">Details ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-title" aria-hidden="true">Machine Learning Prediction Algorithm for Audio Features</p>
+                <p>Applies correlation analysis and regression models to find linguistic signals in music reviews that correspond to computationally measured audio properties, testing whether music criticism can be measured acoustically.</p>
+              </div>
+            </div>
+          </article>
+          <article class="card flip" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <p class="meta">Jan. 2026 – May 2026</p>
+                <h3>TigerConnect: A Social Scheduling App for Princeton Students</h3>
+                <span class="flip-hint" aria-hidden="true">Details ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-title" aria-hidden="true">TigerConnect: A Social Scheduling App for Princeton Students</p>
+                <p>A social scheduling app that reduces the friction of finding meeting times by combining a personal calendar, automatic status indicators, messaging, and personalized suggested meeting times.</p>
+              </div>
+            </div>
+          </article>
+          <article class="card flip" tabindex="0">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <p class="meta">Nov. 2024 – Dec. 2024</p>
+                <h3>Machine Learning Fraud Detector</h3>
+                <span class="flip-hint" aria-hidden="true">Details ↻</span>
+              </div>
+              <div class="flip-face flip-back">
+                <p class="flip-title" aria-hidden="true">Machine Learning Fraud Detector</p>
+                <p>A lightweight model using decision stumps and multiplicative weights to detect fraudulent credit card transactions within large datasets.</p>
+              </div>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
-    <section id="experience" class="band band-deep section">
-      <div class="container">
-        <header class="sec-head">
-          <h2>Experience</h2>
-        </header>
-        <ol class="timeline">
-          <li>
-            <div class="when">Apr. 2026 – Aug. 2026</div>
-            <div>
-              <h3>Meteorology Undergraduate Researcher</h3>
-              <p class="where">University of Reading, Department of Meteorology · Reading, UK</p>
-              <ul>
-                <li>Assessed the performance of a novel machine learning feature selection technique for predicting annual tropical cyclone genesis on a global and basin-wide scale.</li>
-                <li>Extended the code to support more diverse training datasets by modularizing the temporal and spatial input features.</li>
-                <li>Investigated the feasibility of a more physically informed algorithm to enable a more dynamical model.</li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <div class="when">Jan. 2026 – Present</div>
-            <div>
-              <h3>SIFP Head Fellow</h3>
-              <p class="where">Princeton Emma Bloomberg Center for Access and Opportunity · Princeton, NJ</p>
-              <ul>
-                <li>Provide personal, professional, and academic support to mentees through inclusive leadership and weekly group meetings.</li>
-                <li>Receive intensive leadership training in facilitation, communication, and debriefing to better support mentees.</li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <div class="when">Feb. 2024 – Aug. 2025</div>
-            <div>
-              <h3>Civil and Environmental Engineering Undergraduate Researcher</h3>
-              <p class="where">Princeton University, Department of Civil and Environmental Engineering · Princeton, NJ</p>
-              <ul>
-                <li>Assessed new human vulnerability metrics for extreme weather hazards using large-scale data analysis and visualization.</li>
-                <li>Cleaned and validated a 20-year, daily, county-level dataset from NOAA weather archives and ran preliminary analyses of compound weather events in major coastal cities.</li>
-                <li>Scaled the analysis from county to regional patterns, enabling more robust geographic comparisons.</li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <div class="when">July 2024 – Present</div>
-            <div>
-              <h3>ACT Tutor</h3>
-              <p class="where">Princeton Tutoring LLC · Princeton, NJ</p>
-              <ul>
-                <li>Identify each student's opportunities for growth and build personalized short- and long-term plans to reach their ACT goals.</li>
-                <li>Teach evidence-based strategies for problem-solving and critical reasoning, along with organization and time management habits.</li>
-              </ul>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
     <!-- ============ EDUCATION ============ -->
-    <section id="education" class="band band-paper section">
+    <section id="education" class="band band-sea section">
       <div class="container">
         <header class="sec-head">
           <h2>Education</h2>
@@ -179,66 +234,132 @@
 
         <h3 class="subhead">Relevant Coursework</h3>
         <div class="cards three">
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://registrar.princeton.edu/course-offerings/course-details?term=1264&amp;courseid=018052" target="_blank" rel="noopener" aria-label="Tropical Cyclones and Associated Impacts course page"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></a>
             <p class="meta">Spring 2026</p>
             <h3>Tropical Cyclones and Associated Impacts</h3>
             <p>Storm surge, inland flooding, heavy rainfall, damaging winds, and compound hazards, along with their societal impacts on energy and public health.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://registrar.princeton.edu/course-offerings/course-details?term=1262&amp;courseid=014464" target="_blank" rel="noopener" aria-label="Climate and Weather: Order in the Chaos course page"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></a>
             <p class="meta">Fall 2025</p>
             <h3>Climate and Weather: Order in the Chaos</h3>
             <p>Energy and water cycling, ocean and atmospheric circulation, El Niño, and the statistics of heat waves, tropical cyclones, and floods.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://registrar.princeton.edu/course-offerings/course-details?term=1262&amp;courseid=014294" target="_blank" rel="noopener" aria-label="Intro to Machine Learning (Python) course page"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></a>
             <p class="meta">Fall 2025</p>
             <h3>Intro to Machine Learning (Python)</h3>
             <p>Linear models, SVMs, clustering, dimensionality reduction, deep neural networks, Markov decision processes, planning, and reinforcement learning.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://registrar.princeton.edu/course-offerings/course-details?term=1254&amp;courseid=002053" target="_blank" rel="noopener" aria-label="Intro to Programming Systems (C and Assembly) course page"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></a>
             <p class="meta">Spring 2025</p>
             <h3>Intro to Programming Systems (C and Assembly)</h3>
             <p>Composing large programs with modularity and abstraction; testing, debugging, and performance tuning; computer architecture through C, assembly, and machine language.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://registrar.princeton.edu/course-offerings/course-details?term=1252&amp;courseid=002054" target="_blank" rel="noopener" aria-label="Algorithms and Data Structures (Java) course page"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></a>
             <p class="meta">Fall 2024</p>
             <h3>Algorithms and Data Structures (Java)</h3>
             <p>Sorting, searching, and graph algorithms, plus advanced topics in randomization, intractability, and multiplicative weights.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://registrar.princeton.edu/course-offerings/course-details?term=1244&amp;courseid=002051" target="_blank" rel="noopener" aria-label="Computer Science: An Interdisciplinary Approach course page"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg></a>
             <p class="meta">Spring 2024</p>
-            <h3>Intro to Computer Science (Java)</h3>
+            <h3>Computer Science: An Interdisciplinary Approach</h3>
             <p>Hardware and software systems, programming in Java, algorithms and data structures, theory of computation, and scientific computing.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- ============ WORK ============ -->
+    <section id="work" class="band band-deep section">
+      <div class="container">
+        <header class="sec-head">
+          <h2>Work Experience</h2>
+        </header>
+        <ol class="timeline">
+          <li>
+            <div class="when">Jan. 2026 – Present</div>
+            <div>
+              <h3>SIFP Head Fellow</h3>
+              <p class="where">Princeton Emma Bloomberg Center for Access and Opportunity · Princeton, NJ</p>
+              <ul>
+                <li>Advises 31 Princeton students by organizing weekly professional and academic mentorship meetings, while also setting up monthly 1-on-1 meetings to understand how to address the needs of each mentee.</li>
+                <li>Receives intensive and inclusive leadership training, including facilitation, communication, and debriefing skills, to better support mentees.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="when">Apr. 2025 – Aug. 2025</div>
+            <div>
+              <h3>Freshman Scholars Institute Residential Advisor</h3>
+              <p class="where">Princeton Emma Bloomberg Center for Access and Opportunity · Princeton, NJ</p>
+              <ul>
+                <li>Provided mentorship as well as social, emotional, and academic support to 12 first-generation/low-income Freshman Scholars by facilitating interactive and meaningful connections among students.</li>
+                <li>Coordinated and managed event logistics and budgets through weekly leadership meetings to plan for recurring academic and social events for Freshman Scholars throughout the summer.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="when">July 2024 – Present</div>
+            <div>
+              <h3>ACT Tutor</h3>
+              <p class="where">Princeton Tutoring LLC · Princeton, NJ</p>
+              <ul>
+                <li>Identified 11 high school students' opportunities for growth and created personalized short- and long-term plans to achieve their ACT goals through regimented online or in-person tutoring sessions that result in a +10 percentile score increase.</li>
+                <li>Instructed students in evidence-based ACT strategies that emphasize problem-solving, critical reasoning, and structured study habits, while also strengthening organization and time management habits.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- ============ ACTIVITIES ============ -->
-    <section id="activities" class="band band-sea section">
+    <section id="activities" class="band band-paper section">
       <div class="container">
         <header class="sec-head">
           <h2>Activities &amp; Leadership</h2>
         </header>
         <div class="cards two">
-          <article class="card">
-            <p class="meta">Member · Aug. 2024 – Present</p>
-            <h3>Club Rock-Climbing</h3>
-            <p>A dedicated climbing team focused on technique development, route planning, and coordinating climbing trips.</p>
+          <article class="card has-link">
+            <a class="card-link" href="https://www.instagram.com/princetonaslclub" target="_blank" rel="noopener" aria-label="ASL Club on Instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+            <p class="meta">Officer · Jan. 2026 – Present</p>
+            <h3>ASL Club</h3>
+            <p>Officer of Princeton's American Sign Language club, supporting its revival in 2026 and helping organize events.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://sifp-ebcao.princeton.edu/" target="_blank" rel="noopener" aria-label="Scholars Institute Fellows Program website"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></a>
             <p class="meta">Member &amp; Head Fellow · Jan. 2024 – Present</p>
             <h3>Scholars Institute Fellows Program</h3>
             <p>Providing mentorship and academic enrichment opportunities for Princeton students.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://www.instagram.com/tighas.fc" target="_blank" rel="noopener" aria-label="TiGHAs on Instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
             <p class="meta">Co-Captain · Jan. 2024 – Present</p>
             <h3>TiGHAs Intramural Soccer</h3>
             <p>Co-captain of the TiGHAs, founded in 2017 and winners of the Princeton International Center's World Cup Tournament.</p>
           </article>
-          <article class="card">
+          <article class="card has-link">
+            <a class="card-link" href="https://www.instagram.com/princetonclimbingteam" target="_blank" rel="noopener" aria-label="Princeton Climbing Team on Instagram"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a>
+            <p class="meta">Member · Aug. 2024 – Present</p>
+            <h3>Club Rock-Climbing</h3>
+            <p>A dedicated climbing team focused on technique development, route planning, and coordinating climbing trips.</p>
+          </article>
+          <article class="card has-link">
+            <a class="card-link" href="https://whigclio.princeton.edu/" target="_blank" rel="noopener" aria-label="American Whig–Cliosophic Society website"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></a>
             <p class="meta">Member · Aug. 2023 – Present</p>
             <h3>American Whig–Cliosophic Society</h3>
             <p>Princeton's oldest political, literary, and debating society, hosting prominent speakers and social events.</p>
+          </article>
+          <article class="card has-link">
+            <a class="card-link" href="https://capandgownclub.org/" target="_blank" rel="noopener" aria-label="Cap &amp; Gown Club website"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"/></svg></a>
+            <p class="meta">Member · Feb. 2025 – Present</p>
+            <h3>Cap &amp; Gown Club</h3>
+            <p>Member of Cap &amp; Gown Club, one of Princeton's oldest dining and social organizations on campus.</p>
           </article>
         </div>
       </div>
@@ -266,7 +387,6 @@
       </footer>
     </section>
   </main>
-
 
   <script src="script.js"></script>
 </body>

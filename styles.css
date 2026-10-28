@@ -1,7 +1,7 @@
 :root {
   --sea: #dff4f7;
   --paper: #ffffff;
-  --deep: #0b3a55;
+  --deep: #2a6b8c;
   --ink: #0b2533;
   --muted: #4f6774;
   --accent: #0a5f8a;
@@ -9,6 +9,9 @@
   --deep-signal: #6fd3df;
   --on-deep: #e8f6f9;
   --aqua: #6fd3df;
+  --sea-ink: #0b2533;       /* text on the sea color (used where sea appears inside a dark band) */
+  --sea-muted: #4f6774;
+  --sea-signal: #0a7d8c;
   /* derived */
   --line: color-mix(in srgb, var(--ink) 12%, transparent);
   --line-strong: color-mix(in srgb, var(--ink) 22%, transparent);
@@ -28,6 +31,9 @@
   --deep-signal: #6fd3df;
   --on-deep: #e3f3f7;
   --aqua: #6fd3df;
+  --sea-ink: #e3f3f7;
+  --sea-muted: #93b0bb;
+  --sea-signal: #6fd3df;
   --card: rgba(255, 255, 255, .035);
   color-scheme: dark;
 }
@@ -172,6 +178,74 @@ h1, h2 { font-family: "Manrope", system-ui, sans-serif; }
 .card.feature h3 { font-size: 1.35rem; }
 .card p:not(.meta) { margin: 0; color: var(--muted); font-size: .95rem; }
 .meta { font-size: .66rem; color: var(--accent); margin: 0; }
+/* Cards that hold a role (organization line + bullet list) */
+.card p.where { margin: 0 0 .9rem; font-size: .9rem; color: var(--accent); }
+.card ul { margin: 0; padding-left: 1.1rem; color: var(--muted); font-size: .95rem; }
+.card ul li { margin-bottom: .45rem; }
+.card ul li:last-child { margin-bottom: 0; }
+.card ul li::marker { color: var(--signal); }
+/* Small round icon link in a card's top-right corner (Instagram or website) */
+.card.has-link { position: relative; }
+.card.has-link .meta { padding-right: 2.75rem; }
+.card-link {
+  position: absolute; top: 1.25rem; right: 1.25rem; width: 36px; height: 36px;
+  display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid var(--line-strong); color: var(--muted);
+}
+.card-link:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Flip cards (Research Experience): front shows the title, back shows the details.
+   Hover flips on computers; tap flips on phones; keyboard focus flips too. */
+.card.flip { background: none; border: 0; padding: 0; perspective: 1400px; cursor: pointer; border-radius: 18px; }
+.card.flip:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
+.flip-inner {
+  display: grid; height: 100%;
+  transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+.flip-face {
+  grid-area: 1 / 1; display: flex; flex-direction: column;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.75rem 1.75rem 1.6rem;
+}
+.card.feature .flip-face { padding: 2.2rem 2.1rem 2rem; }
+.flip-back { transform: rotateY(180deg); }
+/* the back of a flipped card uses the hero color so it stands apart from the fronts */
+.band-deep .flip-back {
+  /* same color as the hero, with the hero's text colors */
+  background: var(--sea);
+  --ink: var(--sea-ink); --muted: var(--sea-muted); --signal: var(--sea-signal);
+  border-color: color-mix(in srgb, var(--sea-ink) 18%, transparent);
+  color: var(--ink);
+}
+@media (hover: hover) { .card.flip:hover .flip-inner { transform: rotateY(180deg); } }
+.card.flip:focus-visible .flip-inner, .card.flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+.flip-hint {
+  margin-top: auto; padding-top: 1.4rem; color: var(--muted);
+  font: 700 .62rem/1 "Manrope", system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase;
+}
+.card p.flip-title { margin: 0 0 .85rem; color: var(--ink); font: 700 .98rem/1.35 "Manrope", system-ui, sans-serif; letter-spacing: -.01em; }
+@media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }
+@media print {
+  .flip-inner { display: block; transform: none !important; }
+  .flip-face { backface-visibility: visible; }
+  .flip-back { transform: none; }
+  .flip-hint, .flip-title { display: none; }
+}
+
+/* Research internships: two plain columns side by side (no card box); stacked on phones */
+.roles { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 3.5rem; row-gap: 0; }
+/* Each column shares the same two rows (dates + title + organization, then bullets). The top block is
+   bottom-aligned, so both headers sit right above the bullets, which start at the same height */
+.role { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
+.role h3 { font: 700 1.3rem/1.3 "Manrope", system-ui, sans-serif; letter-spacing: -.02em; margin: .55rem 0 .35rem; }
+.role .where { margin: 0; }
+.role-head { align-self: end; margin-bottom: .9rem; }
+.role .advisor, .card p.advisor { margin: .15rem 0 0; color: var(--muted); font-size: .9rem; font-style: italic; }
+.card p.where:has(+ .advisor) { margin-bottom: 0; }
+.role ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+.role ul li { margin-bottom: .45rem; }
+.role ul li::marker { color: var(--signal); }
+@media (max-width: 760px) { .roles { grid-template-columns: 1fr; row-gap: 2.5rem; } .role { display: block; } }
 
 /* ---------- Timeline (on the deep band) ---------- */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
